@@ -116,11 +116,18 @@ def tunnel(request):
 def _do_connect(request):
     # Connect to guacd daemon
     client = GuacamoleClient(settings.GUACD_HOST, settings.GUACD_PORT)
-    client.handshake(protocol='rdp',
-                     hostname=settings.SSH_HOST,
-                     port=settings.SSH_PORT,
-                     username=settings.SSH_USER,
-                     password=settings.SSH_PASSWORD)
+    # client.handshake(protocol='rdp',
+    #                  hostname=settings.SSH_HOST,
+    #                  port=settings.SSH_PORT,
+    #                  username=settings.SSH_USER,
+    #                  password=settings.SSH_PASSWORD)
+    # security='any',)
+
+    client.handshake(protocol='ssh',
+                     hostname='192.168.0.165',
+                     port=8787,
+                     username='alumno2',
+                     password='alumno2')
     # security='any',)
 
     cache_key = str(uuid.uuid4())
